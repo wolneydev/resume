@@ -2,7 +2,7 @@
 
 Site de apresentação profissional (PT-BR / EN) de **Wolney Cesar Carneiro**, Desenvolvedor de Software Sênior.
 
-- Arquivo único `index.html` (HTML5 semântico + CSS3, mobile-first, sem dependências de build)
+- `index.html` (HTML5 semântico), `css/style.css` e `js/main.js` — mobile-first, sem dependências de build
 - Tema de cores: [Everforest Dark](https://github.com/sainnhe/everforest)
 - Seletor de idioma PT/EN com lembrança da preferência
 - Currículos para download em `cv/`
