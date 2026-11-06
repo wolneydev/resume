@@ -1,0 +1,81 @@
+/* ── Fig. 1: request machine. Everforest Light paper card inside the dark site. ── */
+.rq-figure{margin:0}
+.rq-figure .iso[data-theme="light"]{
+  --anatomy-page:#f4f0d9;--anatomy-card:#fdf6e3;--anatomy-text:#5c6a72;--anatomy-strong:#3a464c;--anatomy-muted:#939f91;
+  --anatomy-paper:#fdf6e3;--anatomy-face:#fffbef;--anatomy-top:#fffbef;
+  --anatomy-shade-0:#e3ddc5;--anatomy-shade-1:#ebe5cd;--anatomy-shade-2:#f2ecd5;--anatomy-shade-3:#f8f2dd;
+  --anatomy-lit-top:#fffdf6;--anatomy-lit-shade:#eef0d2;
+  --anatomy-hi:#4c5960;--anatomy-mid:#939f91;--anatomy-lo:#bec5b2;--anatomy-faint:#dcd8c1;--anatomy-lit:#5f7000;
+  --anatomy-halo:#7f876f;--anatomy-halo-opacity:.3;--anatomy-dot:#4c5960;
+  --anatomy-red:#f85552;--anatomy-green:#8da101;--anatomy-blue:#3a94c5;
+  --anatomy-mono:var(--mono,"IBM Plex Mono",ui-monospace,monospace);
+  --rq-void:#b9b6a0;--rq-screen:#3d484d;--rq-digit:#a7c080;--rq-tag:#f85552;
+}
+.rq-figure .iso-plate{border-radius:var(--radius,12px);padding:46px 22px 18px;box-shadow:0 0 0 1px #e6e2cc,0 22px 50px rgba(0,0,0,.32);color:var(--anatomy-text);overflow:hidden}
+.rq-figure .iso-plate-corners{inset:16px 20px auto 20px;height:12px}
+.rq-figure .iso-plate-corner{font-size:11px}
+.rq-foot{display:flex;justify-content:space-between;gap:12px;margin-top:2px;font:400 10.5px/1.3 var(--anatomy-mono);letter-spacing:.04em;color:var(--anatomy-muted)}
+.rq-foot [data-t="hint"]{text-transform:uppercase;letter-spacing:.1em}
+.rq-foot [data-readout]{color:var(--anatomy-text);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rq-stage{position:relative;outline:none;cursor:pointer;touch-action:pan-y;margin:0 -6px;border-radius:8px}
+.rq-stage:focus-visible{outline:1px solid var(--anatomy-muted);outline-offset:6px}
+.rq-stage svg{max-width:100%}
+.rq-void{fill:var(--rq-void);stroke:none}
+.rq-screen{fill:var(--rq-screen);stroke:none}
+.rq-digits{fill:var(--rq-digit);font-family:var(--anatomy-mono);font-weight:600;letter-spacing:.08em}
+.rq-spokes{stroke-width:1.1px}
+.rq-tips{fill:var(--anatomy-face);stroke:var(--anatomy-mid);stroke-width:.6px}
+.rq-lever{stroke-width:1.2px}
+.rq-knob{fill:var(--anatomy-hi);stroke:none}
+.rq-lamp{fill:var(--anatomy-lo);stroke:var(--anatomy-mid);stroke-width:.5px;transition:fill .3s}
+.rq-lamp[data-on]{fill:var(--anatomy-green)}
+.rq-tag{fill:var(--anatomy-face);stroke:none}
+.rq-tag-text{fill:var(--rq-tag);font-family:var(--anatomy-mono);font-weight:700;letter-spacing:.06em}
+.rq-method{font-weight:600}
+[data-part="cache-card"][data-on] .iso-edge,[data-part="db-card"][data-on] .iso-edge{stroke:var(--anatomy-lit)}
+.rq-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* panel: the live values and the controls */
+.rq-panel{display:grid;gap:12px;margin-top:6px;padding-top:14px;border-top:1px solid #e6e2cc;font-family:var(--anatomy-mono)}
+.rq-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}
+.rq-stats>div{background:#f4f0d9;border:1px solid #e6e2cc;border-radius:8px;padding:7px 10px;min-width:0}
+.rq-stats>div:first-child{grid-column:1/-1}
+.rq-stats dt{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--anatomy-muted)}
+.rq-stats dd{margin:2px 0 0;font-size:14px;font-weight:600;color:var(--anatomy-strong);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rq-stats dd[data-code="200"],.rq-stats dd[data-code="201"]{color:#6f8000}
+.rq-stats dd[data-code="401"]{color:#e0403d}
+.rq-stats dd[data-state="hit"]{color:#2f8f6b}
+.rq-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.rq-steps{display:flex;flex-wrap:wrap;gap:4px;list-style:none;margin:0;padding:0}
+.rq-steps button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:999px;font-size:11.5px;color:var(--anatomy-muted);border:1px solid transparent;transition:background .2s,color .2s,border-color .2s}
+.rq-steps button b{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;font-size:10px;font-weight:600;background:#efebd4;color:var(--anatomy-text)}
+.rq-steps button:hover{color:var(--anatomy-text);border-color:#e0dcc7}
+.rq-steps button[data-state="done"]{color:var(--anatomy-text)}
+.rq-steps button[data-state="done"] b{background:#e5e8c6;color:#5f7000}
+.rq-steps button[data-state="now"]{background:#3d484d;color:#fdf6e3}
+.rq-steps button[data-state="now"] b{background:#a7c080;color:#2d353b}
+.rq-steps button[data-state="skip"]{text-decoration:line-through;opacity:.7}
+.rq-steps button[data-state="off"]{opacity:.38}
+.rq-steps button:focus-visible,.rq-buttons button:focus-visible{outline:2px solid #dfa000;outline-offset:2px}
+.rq-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.rq-buttons button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border-radius:8px;font-size:12px;color:var(--anatomy-strong);background:#f4f0d9;border:1px solid #e0dcc7;transition:border-color .2s,background .2s}
+.rq-buttons button:hover{border-color:#a6b0a0}
+.rq-switch i{position:relative;width:26px;height:14px;border-radius:999px;background:#d3cfb8;transition:background .2s}
+.rq-switch i::after{content:"";position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:#fdf6e3;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:transform .2s var(--anatomy-ease)}
+.rq-switch[aria-checked="true"] i{background:#8da101}
+.rq-switch[aria-checked="true"] i::after{transform:translateX(12px)}
+.rq-legend{color:var(--grey2,#9da9a0);font-size:.86rem;line-height:1.6;margin-top:.8rem;max-width:80ch}
+@media (min-width:700px){
+  .rq-stats{grid-template-columns:1.6fr repeat(4,minmax(0,1fr))}
+  .rq-stats>div:first-child{grid-column:auto}
+  .rq-figure .iso-plate{padding:48px 28px 20px}
+}
+@media (max-width:560px){
+  .rq-figure .iso-plate{padding:42px 10px 14px}
+  .rq-stage{margin:0 -14px}
+  .rq-steps button span{display:none}
+  .rq-steps button[data-state="now"] span{display:inline}
+  .rq-foot [data-t="hint"]{display:none}
+  .rq-foot{justify-content:flex-end}
+}
+@media (prefers-reduced-motion:reduce){.rq-switch i,.rq-switch i::after,.rq-steps button{transition:none}}
