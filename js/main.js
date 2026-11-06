@@ -38,6 +38,8 @@
     "edu.title":"Education","edu.1":"B.Sc. in Information Systems","edu.2":"Postgraduate Certificate in Project Management",
     "cert.title":"Certifications & courses","cert.sep":"Sep 2024","cert.fc":"Hexagonal Architecture, Event Storming, RabbitMQ, Docker, Architecture Fundamentals, SOLID",
     "contact.eyebrow":"contact","contact.title":"Let's talk?","contact.lead":"Open to Senior Developer, Tech Lead or Software Architect roles — remote or hybrid, in Brazil or abroad.",
+    "bonus.eyebrow":"bonus · inside an API","bonus.title":"How a request travels through a backend",
+    "bonus.lead":"My day-to-day work, as a machine: routing, authentication, business logic, caching and the database. Hover or use the arrow keys to follow the token, and compare latency with and without the cache.",
     "contact.cvpt":"Resume · Portuguese","contact.cven":"Resume · English","footer":"theme"
   };
   var nodes = document.querySelectorAll('[data-i18n]'), PT = {};
@@ -51,6 +53,7 @@
     cvBtn.href = l === 'en' ? 'cv/Wolney_Carneiro_CV_EN.pdf' : 'cv/Wolney_Carneiro_CV_PT.pdf';
     document.querySelectorAll('[data-lang]').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.lang === l); });
     try{ localStorage.setItem('lang', l); }catch(e){}
+    document.dispatchEvent(new CustomEvent('langchange', {detail:l}));
   }
   document.querySelectorAll('[data-lang]').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.lang); }); });
   var saved = null; try{ saved = localStorage.getItem('lang'); }catch(e){}
